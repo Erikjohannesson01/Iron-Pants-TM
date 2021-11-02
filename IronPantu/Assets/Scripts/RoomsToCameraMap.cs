@@ -11,8 +11,8 @@ public class RoomsToCameraMap : MonoBehaviour
     float buttonRoomHeight;
     float cameraHeight;
     float cameraWidth;
-    float buttonOffsetX;
-    float buttonOffsetY;
+    float buttonOffsetX = 0;
+    float buttonOffsetY = 0;
     void Start()
     {
         cameraHeight = Camera.main.scaledPixelHeight;
@@ -36,6 +36,8 @@ public class RoomsToCameraMap : MonoBehaviour
             Button roomInstance = Instantiate(room);
             //TODO: Add offsets for each button to fit the screen correctly;
             roomInstance.GetComponent<RectTransform>().rect.Set(transform.position.x,transform.position.y, buttonRoomWidth,buttonRoomHeight);
+            buttonOffsetX = Camera.main.ScreenToWorldPoint(transform.position).x;
+            buttonOffsetY = Camera.main.ScreenToWorldPoint(transform.position).y;
         }
     }
 }
