@@ -17,22 +17,36 @@ public class HealthAndDeath : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) //TODO: ändra till fiendens attack
-            hp--;
+        Dead();
+        Alive();
+    }
 
-        if(hp <= 0)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            hp--;
+        }
+    }
+
+    void Dead()
+    {
+        if (hp <= 0)
         {
             states = State.Dead;
         }
 
-        if(states == State.Alive)
-        {
-            move.enabled = true;
-        }
-
-        if(states == State.Dead)
+        if (states == State.Dead)
         {
             SceneManager.LoadScene(2);
+        }
+    }
+
+    void Alive()
+    {
+        if (states == State.Alive)
+        {
+            move.enabled = true;
         }
     }
 }
