@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class HealthAndDeath : MonoBehaviour
 {
     int hp = 5;
+    public State states;
+    private PlayerMovement move;
 
-    void Start()
+    void Awake()
     {
-
+        move = GetComponent<PlayerMovement>();
+        states = State.Alive;
     }
 
     void Update()
@@ -18,6 +21,16 @@ public class HealthAndDeath : MonoBehaviour
             hp--;
 
         if(hp <= 0)
+        {
+            states = State.Dead;
+        }
+
+        if(states == State.Alive)
+        {
+            move.enabled = true;
+        }
+
+        if(states == State.Dead)
         {
             SceneManager.LoadScene(2);
         }
