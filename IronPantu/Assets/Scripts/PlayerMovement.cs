@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 mousePos;
     Vector2 objectPos;
     float angle;
+    [SerializeField] private FieldOfView fieldOfView;
 
     void Start()
     {
@@ -46,5 +47,8 @@ public class PlayerMovement : MonoBehaviour
         mousePos.y = mousePos.y - objectPos.y;
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        fieldOfView.SetAimDir(Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position));
+        fieldOfView.SetOrigin(transform.position);
     }
 }
