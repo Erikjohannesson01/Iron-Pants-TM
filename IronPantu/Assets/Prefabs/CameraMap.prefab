@@ -46,3 +46,4 @@ MonoBehaviour:
   cameraRoom: {fileID: 8164546241197661229, guid: 8cd28a7b210ed694c89a4d390a142a68, type: 3}
   background: {fileID: 8812203857607138714, guid: 286d0f40dbe948644b093f445e6c087d, type: 3}
   cameraCanvas: {fileID: 2056660780367922904, guid: 635468d83feff3d4cb98e5f5ca4fee1f, type: 3}
+  securityPanel: {fileID: 4620957287155246125, guid: 6963204cd7e7e0e4b8fe1a240ec84ebb, type: 3}
