@@ -34,7 +34,7 @@ public class RoomGenerator : MonoBehaviour
         rooms.Add(_start.GetComponent<Room>());
 
         GameObject _end = Instantiate(EndRoom, _test + new Vector3(gridDimensions - 1, gridDimensions - 1, 0), Quaternion.identity, transform);
-        _end.GetComponent<Room>().gridPos = new Vector2(0, 0);
+        _end.GetComponent<Room>().gridPos = new Vector2(gridDimensions -1, gridDimensions-1);
 
         rooms.Add(_end.GetComponent<Room>());
 
@@ -44,47 +44,74 @@ public class RoomGenerator : MonoBehaviour
     {
         Vector2 _currentPos = rooms[0].gridPos;
         
-        for(int i = 0; i < 50; i++)
+        while(true)
         {
             Vector2 _tempPos = _currentPos;
             float randomMove = Random.value;
             Vector2 movePreference = BestMove(_currentPos, rooms[1].gridPos);
-            _tempPos += movePreference;
 
-
-            //if (_tempPos == rooms[1].gridPos) { break; }
-            if(_tempPos != _currentPos)
+            if(randomMove > 0.6f)
+                _tempPos += movePreference;
+            else
             {
-                Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
-
-                _currentPos = _tempPos;
+                randomMove = Random.value;
+                if (randomMove < 0.25f)
+                {
+                    _tempPos += Vector2.up;
+                }
+                else if (randomMove < 0.5f)
+                {
+                    _tempPos += Vector2.down;
+                }
+                else if (randomMove < 0.75f)
+                {
+                    _tempPos += Vector2.left;
+                }
+                else 
+                {
+                    _tempPos += Vector2.right;
+                }
             }
 
+
+            if(_tempPos == rooms[1].gridPos) { break; }
+            if (_tempPos == rooms[0].gridPos) { continue; }
+            if (_tempPos == _currentPos) { continue;}
+
+         
+
+            GameObject _tempRoom = Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
+            _tempRoom.GetComponent<Room>().gridPos = new Vector2(_tempPos.x, _tempPos.y);
+
+            rooms.Add(_tempRoom.GetComponent<Room>());
+
+            _currentPos = _tempPos;
         }
 
     }
 
     private Vector2 BestMove(Vector2 pos, Vector2 dest)
     {
+
+
         Vector2 _holder = Vector2.zero;
 
-        if(((pos + Vector2.up) + dest).magnitude < ((pos + _holder) + dest).magnitude)
+        if ((pos + Vector2.up - dest).magnitude < (pos + _holder - dest).magnitude)
         {
             _holder = Vector2.up;
         }
-        if (((pos + Vector2.down) + dest).magnitude < ((pos + _holder) + dest).magnitude)
+        if ((pos + Vector2.down - dest).magnitude < (pos + _holder - dest).magnitude)
         {
             _holder = Vector2.down;
         }
-        if (((pos + Vector2.left) + dest).magnitude < ((pos + _holder) + dest).magnitude)
-        {
-            _holder = Vector2.right;
-        }
-        if (((pos + Vector2.right) + dest).magnitude < ((pos + _holder) + dest).magnitude)
+        if ((pos + Vector2.left - dest).magnitude < (pos + _holder - dest).magnitude)
         {
             _holder = Vector2.left;
         }
-
+        if ((pos + Vector2.right - dest).magnitude < (pos + _holder - dest).magnitude)
+        {
+            _holder = Vector2.right;
+        }
 
         return _holder;
     }
