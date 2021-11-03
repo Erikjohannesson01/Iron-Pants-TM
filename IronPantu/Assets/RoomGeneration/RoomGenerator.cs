@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class RoomGenerator : MonoBehaviour
     public int gridDimensions;
     public GameObject StartRoom, EndRoom, Room;
 
-    [SerializeField] private List<Room> rooms = new List<Room>();
+    public List<Room> rooms = new List<Room>();
 
     void Start()
     {
@@ -17,10 +16,10 @@ public class RoomGenerator : MonoBehaviour
         RandomWalk();
     }
 
-   
+
     void Update()
     {
-        
+
     }
 
 
@@ -34,7 +33,7 @@ public class RoomGenerator : MonoBehaviour
         rooms.Add(_start.GetComponent<Room>());
 
         GameObject _end = Instantiate(EndRoom, _test + new Vector3(gridDimensions - 1, gridDimensions - 1, 0), Quaternion.identity, transform);
-        _end.GetComponent<Room>().gridPos = new Vector2(gridDimensions -1, gridDimensions-1);
+        _end.GetComponent<Room>().gridPos = new Vector2(gridDimensions - 1, gridDimensions - 1);
 
         rooms.Add(_end.GetComponent<Room>());
 
@@ -43,14 +42,14 @@ public class RoomGenerator : MonoBehaviour
     private void RandomWalk()
     {
         Vector2 _currentPos = rooms[0].gridPos;
-        
-        while(true)
+
+        while (true)
         {
             Vector2 _tempPos = _currentPos;
             float randomMove = Random.value;
             Vector2 movePreference = BestMove(_currentPos, rooms[1].gridPos);
 
-            if(randomMove > 0.6f)
+            if (randomMove > 0.8f)
                 _tempPos += movePreference;
             else
             {
@@ -67,25 +66,34 @@ public class RoomGenerator : MonoBehaviour
                 {
                     _tempPos += Vector2.left;
                 }
-                else 
+                else
                 {
                     _tempPos += Vector2.right;
                 }
             }
 
-
-            if(_tempPos == rooms[1].gridPos) { break; }
+            if (_tempPos == rooms[1].gridPos) { break; }
             if (_tempPos == rooms[0].gridPos) { continue; }
-            if (_tempPos == _currentPos) { continue;}
+            if (_tempPos == _currentPos) { continue; }
 
-         
+            if ((_tempPos.x >= 0 && _tempPos.y >= 0) && (_tempPos.x <= gridDimensions - 1 && _tempPos.y <= gridDimensions - 1))
+            {
+                bool _check = false;
+                foreach (Room room in rooms)
+                {
+                    if (_tempPos == room.gridPos) { _check = true; }
+                }
 
-            GameObject _tempRoom = Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
-            _tempRoom.GetComponent<Room>().gridPos = new Vector2(_tempPos.x, _tempPos.y);
+                if (!_check)
+                {
+                    GameObject _tempRoom = Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
+                    _tempRoom.GetComponent<Room>().gridPos = new Vector2(_tempPos.x, _tempPos.y);
 
-            rooms.Add(_tempRoom.GetComponent<Room>());
+                    rooms.Add(_tempRoom.GetComponent<Room>());
+                }
 
-            _currentPos = _tempPos;
+                _currentPos = _tempPos;
+            }
         }
 
     }
@@ -120,7 +128,7 @@ public class RoomGenerator : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        for(int i = 0; i < gridDimensions; i++)
+        for (int i = 0; i < gridDimensions; i++)
         {
             Gizmos.DrawLine(transform.position + new Vector3(0, i, 0), transform.position + new Vector3(gridDimensions, i, 0));
         }
