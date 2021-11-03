@@ -60,6 +60,8 @@ public class EnemyAI : MonoBehaviour
             seeker.StartPath(rb2d.position, target.position, Onpath);
     }
 
+
+
     void Onpath(Path p)
     {
 
