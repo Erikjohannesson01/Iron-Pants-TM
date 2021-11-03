@@ -43,14 +43,13 @@ public class RoomGenerator : MonoBehaviour
     {
         Vector2 _currentPos = rooms[0].gridPos;
 
-        for (int i = 0; i < 100; i++)
-        //while(true)
+        while (true)
         {
             Vector2 _tempPos = _currentPos;
             float randomMove = Random.value;
             Vector2 movePreference = BestMove(_currentPos, rooms[1].gridPos);
 
-            if (randomMove > 0.6f)
+            if (randomMove > 0.8f)
                 _tempPos += movePreference;
             else
             {
@@ -73,22 +72,28 @@ public class RoomGenerator : MonoBehaviour
                 }
             }
 
-
             if (_tempPos == rooms[1].gridPos) { break; }
             if (_tempPos == rooms[0].gridPos) { continue; }
             if (_tempPos == _currentPos) { continue; }
-            Debug.Log(_tempPos);
 
-            if ((_tempPos.x >= 0 && _tempPos.y >= 0) || (_tempPos.x >= gridDimensions && _tempPos.y >= 0))
+            if ((_tempPos.x >= 0 && _tempPos.y >= 0) && (_tempPos.x <= gridDimensions - 1 && _tempPos.y <= gridDimensions - 1))
             {
-                GameObject _tempRoom = Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
-                _tempRoom.GetComponent<Room>().gridPos = new Vector2(_tempPos.x, _tempPos.y);
+                bool _check = false;
+                foreach (Room room in rooms)
+                {
+                    if (_tempPos == room.gridPos) { _check = true; }
+                }
 
-                rooms.Add(_tempRoom.GetComponent<Room>());
+                if (!_check)
+                {
+                    GameObject _tempRoom = Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
+                    _tempRoom.GetComponent<Room>().gridPos = new Vector2(_tempPos.x, _tempPos.y);
+
+                    rooms.Add(_tempRoom.GetComponent<Room>());
+                }
+
+                _currentPos = _tempPos;
             }
-
-
-            _currentPos = _tempPos;
         }
 
     }
