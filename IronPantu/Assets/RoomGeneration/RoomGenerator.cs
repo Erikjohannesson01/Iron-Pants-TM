@@ -49,7 +49,7 @@ public class RoomGenerator : MonoBehaviour
             float randomMove = Random.value;
             Vector2 movePreference = BestMove(_currentPos, rooms[1].gridPos);
 
-            if (randomMove > 0.8f)
+            if (randomMove > 0.4f)
                 _tempPos += movePreference;
             else
             {
