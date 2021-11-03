@@ -5,9 +5,11 @@ using UnityEngine;
 public class MoveCameraToRoom : MonoBehaviour
 {
     int gridPos;
+    public GameObject cameraScreen;
+    GameObject cameraMap;
     void Start()
     {
-        gridPos = 10;
+        cameraMap = GameObject.Find("CameraMap");
     }
 
     // Update is called once per frame
@@ -18,6 +20,11 @@ public class MoveCameraToRoom : MonoBehaviour
     public void MoveCamera()
     {
         //TODO: add grid pos of the room
-        Camera.main.transform.position = new Vector3();
+        cameraMap.transform.GetChild(0).gameObject.SetActive(false);
+        cameraMap.transform.GetChild(1).gameObject.SetActive(false);
+
+        GameObject cameraScreenInstance = Instantiate(cameraScreen);
+        cameraScreenInstance.SetActive(true); ;
+       // Camera.main.transform.position = new Vector3();
     }
 }
