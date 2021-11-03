@@ -6,38 +6,50 @@ using UnityEngine.UI;
 public class RoomsToCameraMap : MonoBehaviour
 {
     public Button room;
+    public Canvas background;
+    public Canvas cameraCanvas;
     GameObject[] rooms;
-    float buttonRoomWidth;
-    float buttonRoomHeight;
-    float cameraHeight;
-    float cameraWidth;
-    float buttonOffsetX = 0;
-    float buttonOffsetY = 0;
+    string tagToLookFor = "Rooms";
+    bool inCameraMap = false;
+    bool cameraMapGenerated = false;
     void Start()
     {
-        cameraHeight = Camera.main.scaledPixelHeight;
-        cameraWidth = Camera.main.scaledPixelWidth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && !inCameraMap)
+        {
+            if (!cameraMapGenerated)
+            {
+                GetCameraMap();
+                cameraMapGenerated = true;
+            }
+            else
+            {
+                gameObject.SetActive(true);
+            }
+            inCameraMap = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.E))
+        {
+            gameObject.SetActive(false);
+            inCameraMap = false;
+        }
     }
     void GetCameraMap()
     {
-        rooms = GameObject.FindGameObjectsWithTag("Room");
-
-        buttonRoomHeight = cameraHeight / rooms.Length;
-        buttonRoomWidth = cameraWidth / rooms.Length;
-
-        foreach(GameObject roomInArray in rooms)
+        rooms = new GameObject[GameObject.FindGameObjectsWithTag(tagToLookFor).Length];
+        rooms = GameObject.FindGameObjectsWithTag(tagToLookFor);
+        int roomCount = 1;
+        Instantiate(background, transform);
+        Canvas cameraCanvasInstance = Instantiate(cameraCanvas, transform);
+        foreach (GameObject roomInArray in rooms)
         {
-            Button roomInstance = Instantiate(room);
-            //TODO: Add offsets for each button to fit the screen correctly;
-            roomInstance.GetComponent<RectTransform>().rect.Set(transform.position.x,transform.position.y, buttonRoomWidth,buttonRoomHeight);
-            buttonOffsetX = Camera.main.ScreenToWorldPoint(transform.position).x;
-            buttonOffsetY = Camera.main.ScreenToWorldPoint(transform.position).y;
+            Button roomInstance = Instantiate(room, cameraCanvasInstance.transform);
+            roomInstance.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Room" + roomCount;
+            roomCount++;
         }
     }
 }

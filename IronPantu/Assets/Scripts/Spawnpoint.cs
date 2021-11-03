@@ -36,28 +36,28 @@ public class Spawnpoint : MonoBehaviour
             {
                 randomroom = Random.Range(0, templates.bottomRooms.Length);
 
-                Instantiate(templates.bottomRooms[randomroom], transform.position, templates.bottomRooms[randomroom].transform.rotation, transform.parent);
+                Instantiate(templates.bottomRooms[randomroom], transform.position, templates.bottomRooms[randomroom].transform.rotation, transform.parent.parent);
             }
             //Need BottomDoor
             else if (openingdir == 2)
             {
                 randomroom = Random.Range(0, templates.topRooms.Length);
 
-                Instantiate(templates.topRooms[randomroom], transform.position, templates.topRooms[randomroom].transform.rotation, transform.parent);
+                Instantiate(templates.topRooms[randomroom], transform.position, templates.topRooms[randomroom].transform.rotation, transform.parent.parent);
             }
             //Need TopDoor
             else if (openingdir == 3)
             {
                 randomroom = Random.Range(0, templates.leftRooms.Length);
 
-                Instantiate(templates.leftRooms[randomroom], transform.position, templates.leftRooms[randomroom].transform.rotation, transform.parent);
+                Instantiate(templates.leftRooms[randomroom], transform.position, templates.leftRooms[randomroom].transform.rotation, transform.parent.parent);
             }
             //Need LeftDoor
             else if (openingdir == 4)
             {
                 randomroom = Random.Range(0, templates.rightRooms.Length);
 
-                Instantiate(templates.rightRooms[randomroom], transform.position, templates.rightRooms[randomroom].transform.rotation, transform.parent);
+                Instantiate(templates.rightRooms[randomroom], transform.position, templates.rightRooms[randomroom].transform.rotation, transform.parent.parent);
             }
             //Need RightDoor
 
