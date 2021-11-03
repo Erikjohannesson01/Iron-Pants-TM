@@ -11,6 +11,11 @@ public class EnemyAI : MonoBehaviour
     public float speed = 200f;
     public float nextwpd = 3;
 
+    public LayerMask obstaclelayer;
+
+    bool chase = false;
+
+    public float detectionradius;
 
     Path path;
     int currentwp = 0;
@@ -36,7 +41,22 @@ public class EnemyAI : MonoBehaviour
 
     void Updatepath()
     {
-        if (seeker.IsDone())
+        if (Mathf.Pow(target.position.x - transform.position.x, 2) + Mathf.Pow(target.position.y - transform.position.y, 2) < Mathf.Pow(detectionradius, 2))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, target.position - transform.position, 1f, obstaclelayer);
+
+            if(hit.collider == null)
+            {
+                chase = true;
+                detectionradius = 10;
+            }
+        }
+        else
+        {
+            chase = false;
+            detectionradius = 5;
+        }
+        if (seeker.IsDone() && chase)
             seeker.StartPath(rb2d.position, target.position, Onpath);
     }
 
@@ -82,5 +102,15 @@ public class EnemyAI : MonoBehaviour
         {
             currentwp++;
         }
+
+        
     }
+
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, 0), detectionradius);
+    }
+
 }
