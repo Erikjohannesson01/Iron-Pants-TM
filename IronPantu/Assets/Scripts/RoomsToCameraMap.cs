@@ -63,7 +63,7 @@ public class RoomsToCameraMap : MonoBehaviour
             inCameraMap = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E) && securityPanel.GetComponent<CheckPlayerNear>().PlayerInRange)
         {
             GameObject cameraScreen = GameObject.Find("InCameraScreen(Clone)");
             Destroy(cameraScreen);
