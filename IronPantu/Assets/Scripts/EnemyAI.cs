@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
 
 
-        InvokeRepeating("Updatepath", 0f, .5f);
+        InvokeRepeating("Updatepath", 0f, .25f);
 
     }
 

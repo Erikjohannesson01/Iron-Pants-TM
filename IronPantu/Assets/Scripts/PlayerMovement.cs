@@ -12,8 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
-        rigid2D = GetComponent<Rigidbody2D>();
+        rigid2D = GetComponent<Rigidbody2D>();      
     }
 
     void Update()
