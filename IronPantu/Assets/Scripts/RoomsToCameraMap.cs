@@ -9,6 +9,7 @@ public class RoomsToCameraMap : MonoBehaviour
     public Canvas background;
     public Canvas cameraCanvas;
     public GameObject securityPanel;
+    public GameObject player;
     bool inCameraMap = false;
     bool cameraMapGenerated = false;
     float cellHeight;
@@ -72,6 +73,7 @@ public class RoomsToCameraMap : MonoBehaviour
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
             gameObject.transform.GetChild(2).gameObject.SetActive(true);
             inCameraMap = true;
+            player.GetComponent<HealthAndDeath>().states = State.PrepareFase;
 
         }
         else if (Input.GetKeyDown(KeyCode.E) && securityPanel.GetComponent<CheckPlayerNear>().PlayerInRange && prepareTime > 0)
@@ -83,6 +85,7 @@ public class RoomsToCameraMap : MonoBehaviour
             inCameraMap = false;
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
             gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            player.GetComponent<HealthAndDeath>().states = State.Alive;
         }
         else if (prepareTime <= 0 && inCameraMap)
         {
@@ -93,6 +96,7 @@ public class RoomsToCameraMap : MonoBehaviour
             inCameraMap = false;
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
             gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            player.GetComponent<HealthAndDeath>().states = State.Alive;
         }
     }
     void UpdateTimer()

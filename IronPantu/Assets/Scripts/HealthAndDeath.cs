@@ -19,6 +19,7 @@ public class HealthAndDeath : MonoBehaviour
     {
         Dead();
         Alive();
+        Prepare();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,5 +49,10 @@ public class HealthAndDeath : MonoBehaviour
         {
             move.enabled = true;
         }
+    }
+    void Prepare()
+    {
+        if(states == State.PrepareFase)
+        move.enabled = false;
     }
 }
