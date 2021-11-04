@@ -1,17 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using RoomEnums;
 
 public class RoomGenerator : MonoBehaviour
 {
-    private Vector3 _test;
+    private Vector3 offset;
     public int gridDimensions;
-    public GameObject StartRoom, EndRoom, Room;
+    [SerializeField, Range(0, 1)]
+    private float randomPahting;
+    public GameObject Room;
 
     public List<Room> rooms = new List<Room>();
 
     void Start()
     {
-        _test = transform.position + new Vector3(0.5f, 0.5f);
+        offset = transform.position + new Vector3(0.5f, 0.5f);
         InitializeGeneration();
         RandomWalk();
     }
@@ -25,52 +28,41 @@ public class RoomGenerator : MonoBehaviour
 
     private void InitializeGeneration()
     {
-        //Create a start and End Point.
 
-        GameObject _start = Instantiate(StartRoom, _test + new Vector3(0, 0, 0), Quaternion.identity, transform);
-        _start.GetComponent<Room>().gridPos = new Vector2(0, 0);
-
-        rooms.Add(_start.GetComponent<Room>());
-
-        GameObject _end = Instantiate(EndRoom, _test + new Vector3(gridDimensions - 1, gridDimensions - 1, 0), Quaternion.identity, transform);
-        _end.GetComponent<Room>().gridPos = new Vector2(gridDimensions - 1, gridDimensions - 1);
-
-        rooms.Add(_end.GetComponent<Room>());
-
+        //Create Start/Spawn Room.
+        newRoom(Vector3.zero, RoomType.Start, RoomDirection.North, RoomExit.Exit4);
+        //Create End/Exit Room.
+        newRoom(new Vector3(gridDimensions - 1, gridDimensions - 1), RoomType.End, RoomDirection.South, RoomExit.Exit4);
+      
     }
 
     private void RandomWalk()
     {
+        float movePreference = randomPahting;
         Vector2 _currentPos = rooms[0].gridPos;
+        Room oldRoom = rooms[0];
 
         while (true)
         {
             Vector2 _tempPos = _currentPos;
             float randomMove = Random.value;
-            Vector2 movePreference = BestMove(_currentPos, rooms[1].gridPos);
+            Vector2 moveDir = BestMove(_currentPos, rooms[1].gridPos);
 
-            if (randomMove > 0.4f)
-                _tempPos += movePreference;
-            else
+            if(randomMove < movePreference)
             {
+                movePreference -= randomPahting / 10;
                 randomMove = Random.value;
-                if (randomMove < 0.25f)
-                {
-                    _tempPos += Vector2.up;
-                }
-                else if (randomMove < 0.5f)
-                {
-                    _tempPos += Vector2.down;
-                }
-                else if (randomMove < 0.75f)
-                {
-                    _tempPos += Vector2.left;
-                }
-                else
-                {
-                    _tempPos += Vector2.right;
-                }
+                if (randomMove < 0.25f) { moveDir = Vector2.up; }
+                else if (randomMove < 0.5f) { moveDir = Vector2.down; }
+                else if (randomMove < 0.75f) { moveDir = Vector2.left; }
+                else{ moveDir = Vector2.right; }
+            } else
+            {
+                movePreference = randomPahting;
             }
+
+            _tempPos += moveDir;
+
 
             if (_tempPos == rooms[1].gridPos) { break; }
             if (_tempPos == rooms[0].gridPos) { continue; }
@@ -86,14 +78,16 @@ public class RoomGenerator : MonoBehaviour
 
                 if (!_check)
                 {
-                    GameObject _tempRoom = Instantiate(Room, _test + new Vector3(_tempPos.x, _tempPos.y), Quaternion.identity, transform);
-                    _tempRoom.GetComponent<Room>().gridPos = new Vector2(_tempPos.x, _tempPos.y);
-
-                    rooms.Add(_tempRoom.GetComponent<Room>());
+                    oldRoom = newRoom(new Vector3(_tempPos.x, _tempPos.y), RoomType.Normal, RoomDirection.North, RoomExit.Empty);
                 }
 
                 _currentPos = _tempPos;
             }
+        }
+
+        foreach (Room room in rooms)
+        {
+            room.DecideRoom(rooms);
         }
 
     }
@@ -122,6 +116,21 @@ public class RoomGenerator : MonoBehaviour
         }
 
         return _holder;
+    }
+
+    private Room newRoom(Vector3 pos, RoomType type, RoomDirection direction, RoomExit exit)
+    {
+        GameObject _newRoom = Instantiate(Room, offset + pos, Quaternion.identity, transform);
+        Room _roomScript = _newRoom.GetComponent<Room>();
+
+        _roomScript.gridPos = pos;
+        _roomScript.type = type;
+        _roomScript.direction = direction;
+        _roomScript.exit = exit;
+
+        rooms.Add(_roomScript);
+
+        return _roomScript;
     }
 
 
