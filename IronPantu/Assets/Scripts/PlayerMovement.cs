@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     float angle;
     [SerializeField] private FieldOfView fieldOfView;
 
+    public SpriteRenderer spriterenderer;
+    public Animator animator;
+
     void Start()
     {
         rigid2D = GetComponent<Rigidbody2D>();      
@@ -33,9 +36,24 @@ public class PlayerMovement : MonoBehaviour
         else
             speed = 5;
 
+
         Vector3 movement = new Vector3(x, y).normalized * speed;
 
         rigid2D.velocity = movement;
+        if (movement.x < 0 || movement.x > 0)
+        {
+            animator.SetBool("Walking", true);
+        }
+        else if (movement.y < 0 || movement.y > 0)
+        {
+            animator.SetBool("Walking", true);
+        }
+
+        else
+        {
+            animator.SetBool("Walking", false);
+        }
+        
     }
 
     void Look()
