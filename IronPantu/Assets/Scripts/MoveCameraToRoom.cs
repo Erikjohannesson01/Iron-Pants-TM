@@ -21,8 +21,8 @@ public class MoveCameraToRoom : MonoBehaviour
     public void MoveCamera()
     {
         //TODO: add grid pos of the room
-        cameraMap.transform.GetChild(0).gameObject.SetActive(false);
         cameraMap.transform.GetChild(1).gameObject.SetActive(false);
+        cameraMap.transform.GetChild(2).gameObject.SetActive(false);
 
         GameObject cameraScreenInstance = Instantiate(cameraScreen);
         cameraScreenInstance.SetActive(true);

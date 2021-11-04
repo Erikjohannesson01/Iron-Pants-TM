@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPlayerNear : MonoBehaviour
 {
     public bool PlayerInRange = false;
+    public GameObject eButton;
     void Start()
     {
 
@@ -20,6 +21,7 @@ public class CheckPlayerNear : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerInRange = true;
+            eButton.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -27,6 +29,7 @@ public class CheckPlayerNear : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerInRange = false;
+            eButton.SetActive(false);
         }
     }
 }
