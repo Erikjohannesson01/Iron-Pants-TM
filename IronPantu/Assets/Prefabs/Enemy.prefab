@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3812876568025673222}
   - component: {fileID: 3812876568025673720}
   - component: {fileID: 3812876568025673221}
+  - component: {fileID: 2934169149872148231}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,7 +139,10 @@ MonoBehaviour:
   target: {fileID: 5804389952216732530, guid: 6134f6f220eb0ed4b8865d0c2cb2e60c, type: 3}
   speed: 400
   nextwpd: 3
-  chase: 0
+  obstaclelayer:
+    serializedVersion: 2
+    m_Bits: 0
+  detectionradius: 0
 --- !u!114 &3812876568025673221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +171,19 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!58 &2934169149872148231
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876568025673721}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

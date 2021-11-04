@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3111188026149266406}
   - component: {fileID: 3111188026149266407}
   - component: {fileID: 3111188026149266404}
+  - component: {fileID: -5461887337237231199}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,3 +122,38 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &-5461887337237231199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111188026149266405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: -0.49578103, y: 0.5663349, z: 0}
+  - {x: -0.48816362, y: -0.64359623, z: 0}
+  - {x: -0.31828532, y: -0.9026819, z: 0}
+  - {x: -0.09744358, y: -0.9968949, z: 0}
+  - {x: 0.12339816, y: -0.9851183, z: 0}
+  - {x: 0.31875813, y: -0.87912875, z: 0}
+  - {x: 0.44616702, y: -0.72603256, z: 0}
+  - {x: 0.5042751, y: -0.42290118, z: 0}
+  - {x: 0.50139683, y: 0.4476533, z: 0}
+  - {x: 0.4148962, y: 0.79021114, z: 0}
+  - {x: 0.12461194, y: 0.99660754, z: 0}
+  - {x: -0.068910904, y: 0.99660754, z: 0}
+  - {x: -0.35518518, y: 0.8593631, z: 0}
+  m_ShapePathHash: 1534437164
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 45006
