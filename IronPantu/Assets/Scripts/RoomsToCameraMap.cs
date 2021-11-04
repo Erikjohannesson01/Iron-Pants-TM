@@ -18,7 +18,6 @@ public class RoomsToCameraMap : MonoBehaviour
     void Start()
     {
         gridDimentions = GameObject.Find("RoomController").GetComponent<RoomGenerator>().gridDimensions;
-        actionsLeft = 8;
     }
 
     // Update is called once per frame
@@ -49,13 +48,14 @@ public class RoomsToCameraMap : MonoBehaviour
     }
     void ActivateMap()
     {
-      
+
 
         if (Input.GetKeyDown(KeyCode.E) && !inCameraMap && securityPanel.GetComponent<CheckPlayerNear>().PlayerInRange)
         {
             if (!cameraMapGenerated)
             {
                 GetCameraMap();
+                actionsLeft = GameObject.Find("RoomController").transform.childCount;
                 cameraMapGenerated = true;
             }
             gameObject.transform.GetChild(0).gameObject.SetActive(true);

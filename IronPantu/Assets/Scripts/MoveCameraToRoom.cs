@@ -27,7 +27,7 @@ public class MoveCameraToRoom : MonoBehaviour
         GameObject cameraScreenInstance = Instantiate(cameraScreen);
         cameraScreenInstance.SetActive(true);
         List<Room> rooms = GameObject.Find("RoomController").GetComponent<RoomGenerator>().rooms;
-        Room thisRoom = rooms[Int32.Parse(transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text.Substring(5))];
+        Room thisRoom = rooms[Int32.Parse(transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text.Substring(5))-1];
         Camera.main.transform.position = new Vector3(thisRoom.gridPos.x,thisRoom.gridPos.y,-10);
     }
 }
