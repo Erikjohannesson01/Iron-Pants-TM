@@ -14,9 +14,11 @@ public class RoomsToCameraMap : MonoBehaviour
     float cellHeight;
     float cellWidth;
     int gridDimentions;
+    public int actionsLeft = 8;
     void Start()
     {
         gridDimentions = GameObject.Find("RoomController").GetComponent<RoomGenerator>().gridDimensions;
+        actionsLeft = 8;
     }
 
     // Update is called once per frame
@@ -65,7 +67,8 @@ public class RoomsToCameraMap : MonoBehaviour
         {
             GameObject cameraScreen = GameObject.Find("InCameraScreen(Clone)");
             Destroy(cameraScreen);
-
+            GameObject player = GameObject.Find("Player");
+            Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
             inCameraMap = false;
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gameObject.transform.GetChild(1).gameObject.SetActive(false);

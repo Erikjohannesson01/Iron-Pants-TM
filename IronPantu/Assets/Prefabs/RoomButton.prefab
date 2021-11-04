@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Room 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f010839f0360714d8519178e533addf, type: 2}
+  m_sharedMaterial: {fileID: -6607011948238256821, guid: 6f010839f0360714d8519178e533addf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -281,4 +281,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraScreen: {fileID: 2840092765188863415, guid: eb4f19b6c00dc374a838bc064b96b329, type: 3}
-  cameraMap: {fileID: 5486085410323415673, guid: 76a0697540ff26c44a6a4d5acc7adf08, type: 3}

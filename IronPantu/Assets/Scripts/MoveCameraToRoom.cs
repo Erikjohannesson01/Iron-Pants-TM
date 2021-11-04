@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,9 @@ public class MoveCameraToRoom : MonoBehaviour
         cameraMap.transform.GetChild(1).gameObject.SetActive(false);
 
         GameObject cameraScreenInstance = Instantiate(cameraScreen);
-        cameraScreenInstance.SetActive(true); ;
-       // Camera.main.transform.position = new Vector3();
+        cameraScreenInstance.SetActive(true);
+        List<Room> rooms = GameObject.Find("RoomController").GetComponent<RoomGenerator>().rooms;
+        Room thisRoom = rooms[Int32.Parse(transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text.Substring(5))];
+        Camera.main.transform.position = new Vector3(thisRoom.gridPos.x,thisRoom.gridPos.y,-10);
     }
 }
