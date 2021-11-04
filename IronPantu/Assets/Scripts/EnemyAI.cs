@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
 
     public float detectionradius;
 
+    float angle;
+
     Path path;
     int currentwp = 0;
     bool reachedeop = false;
@@ -39,6 +41,13 @@ public class EnemyAI : MonoBehaviour
     }
 
 
+
+    void Update()
+    {
+        Vector3 direction = target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb2d.rotation = angle + 90;
+    }
     void Updatepath()
     {
         if (Mathf.Pow(target.position.x - transform.position.x, 2) + Mathf.Pow(target.position.y - transform.position.y, 2) < Mathf.Pow(detectionradius, 2))
@@ -114,5 +123,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, 0), detectionradius);
     }
+
+
 
 }
