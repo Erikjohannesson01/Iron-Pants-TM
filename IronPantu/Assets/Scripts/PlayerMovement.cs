@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        rigid2D = GetComponent<Rigidbody2D>();      
+        rigid2D = GetComponent<Rigidbody2D>(); 
     }
 
     void Update()
@@ -59,11 +59,15 @@ public class PlayerMovement : MonoBehaviour
     void Look()
     {
         mousePos = Input.mousePosition;
+        Camera.main.ScreenToWorldPoint(mousePos);
         objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos.x = mousePos.x - objectPos.x;
         mousePos.y = mousePos.y - objectPos.y;
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+
+
+
 
         fieldOfView.SetAimDir(Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position));
         fieldOfView.SetOrigin(transform.position);
