@@ -23,7 +23,7 @@ public class FieldOfView : MonoBehaviour
         int rayCount = 100;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 50f;
+        float viewDistance = 5f;
 
         Vector3[] vertices = new Vector3[rayCount + 2];
         Vector2[] uv = new Vector2[vertices.Length];
