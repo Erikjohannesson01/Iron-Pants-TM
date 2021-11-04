@@ -11,9 +11,6 @@ public class Room : MonoBehaviour
     public RoomDirection direction;
     public RoomType type;
     public RoomExit exit;
-    public int yDir = 0;
-    public int xDir = 0;
-
 
     public Sprite Exit1, Exit2_1, Exit2_2, Exit3, Exit4;
 
@@ -69,6 +66,8 @@ public class Room : MonoBehaviour
         int amountOfExist = 0;
         bool xCheck = false;
         bool yCheck = false;
+        int yDir = 0;
+        int xDir = 0;
 
         foreach (Room room in rooms)
         {
