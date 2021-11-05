@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ActionsLeft : MonoBehaviour
 {
     public GameObject cameraMap;
+    public Room selectedRoom;
     void Start()
     {
         cameraMap = GameObject.Find("CameraMap");

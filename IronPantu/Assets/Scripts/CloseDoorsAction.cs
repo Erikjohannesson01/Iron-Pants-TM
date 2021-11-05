@@ -17,6 +17,7 @@ public class CloseDoorsAction : MonoBehaviour
     }
     public void CloseRoomDoors()
     {
+
         int actions = transform.parent.GetComponent<ActionsLeft>().cameraMap.GetComponent<RoomsToCameraMap>().actionsLeft;
         if (!clicked && actions > 0)
         {

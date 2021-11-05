@@ -67,6 +67,7 @@ public class RoomsToCameraMap : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && !inCameraMap && securityPanel.GetComponent<CheckPlayerNear>().PlayerInRange && prepareTime > 0)
         {
+            GameObject.Find("Main Camera").GetComponent<CameraFollow>().followTarget = false;
             if (!cameraMapGenerated)
             {
                 GetCameraMap();
@@ -81,6 +82,7 @@ public class RoomsToCameraMap : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && securityPanel.GetComponent<CheckPlayerNear>().PlayerInRange && prepareTime > 0)
         {
+            GameObject.Find("Main Camera").GetComponent<CameraFollow>().followTarget = true;
             GameObject cameraScreen = GameObject.Find("InCameraScreen(Clone)");
             Destroy(cameraScreen);
             GameObject player = GameObject.Find("Player Variant");
@@ -92,6 +94,7 @@ public class RoomsToCameraMap : MonoBehaviour
         }
         else if (prepareTime <= 0 && inCameraMap)
         {
+            GameObject.Find("Main Camera").GetComponent<CameraFollow>().followTarget = true;
             GameObject cameraScreen = GameObject.Find("InCameraScreen(Clone)");
             Destroy(cameraScreen);
             GameObject player = GameObject.Find("Player Variant");
