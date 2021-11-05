@@ -8,13 +8,14 @@ public class PlayerMovement : MonoBehaviour
     Vector2 mousePos;
     Vector2 objectPos;
     float angle;
-    [SerializeField] private FieldOfView fieldOfView;
-
+    HealthAndDeath had;
+    public GameObject bullet;
     public SpriteRenderer spriterenderer;
     public Animator animator;
 
     void Start()
     {
+        had = GetComponent<HealthAndDeath>();
         rigid2D = GetComponent<Rigidbody2D>(); 
     }
 
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         Look();
+        Shoot();
     }
 
     void Move()
@@ -65,11 +67,15 @@ public class PlayerMovement : MonoBehaviour
         mousePos.y = mousePos.y - objectPos.y;
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+    }
 
-
-
-
-        fieldOfView.SetAimDir(Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position));
-        fieldOfView.SetOrigin(transform.position);
+    void Shoot()
+    {
+        if(had.states == State.Alive && Input.GetMouseButtonDown(0))
+        {
+            GameObject tempBullet = Instantiate(bullet, transform.position, transform.rotation);
+            Rigidbody2D rbBullet = tempBullet.GetComponent<Rigidbody2D>();
+            rbBullet.velocity = mousePos.normalized * 10f;
+        }
     }
 }
