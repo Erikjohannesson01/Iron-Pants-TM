@@ -6,7 +6,6 @@ public class BulletImpact : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-            Debug.Log("Hej");
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);

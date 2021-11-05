@@ -168,7 +168,8 @@ public class Room : MonoBehaviour
     {
         return new Vector3(
            Random.Range(transform.position.x - 0.3f, transform.position.x + 0.3f),
-           Random.Range(transform.position.y - 0.3f, transform.position.y + 0.3f)
+           Random.Range(transform.position.y - 0.3f, transform.position.y + 0.3f),
+           -1
        );
     }
 
