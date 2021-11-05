@@ -21,7 +21,6 @@ public class ActivateTurretAction : MonoBehaviour
         if (!clicked && actions > 0)
         {
             //TODO: Activate turret code
-            Debug.Log("Turret Active");
             transform.parent.GetComponent<ActionsLeft>().cameraMap.GetComponent<RoomsToCameraMap>().actionsLeft--;
             clicked = true;
         }

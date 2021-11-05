@@ -11,11 +11,12 @@ public class RoomGenerator : MonoBehaviour
     private float randomPahting;
     public GameObject Room;
     bool hasScanned = false;
-
+    public GridDimensionsSlider gridSlider;
     public List<Room> rooms = new List<Room>();
 
     void Start()
     {
+        gridDimensions = GameObject.Find("GameProperties").GetComponent<GameProperties>().GetGridDimensions();
         offset = transform.position + new Vector3(0.5f, 0.5f);
         InitializeGeneration();
         RandomWalk();
