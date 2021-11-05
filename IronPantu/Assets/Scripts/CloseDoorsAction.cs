@@ -21,7 +21,6 @@ public class CloseDoorsAction : MonoBehaviour
         if (!clicked && actions > 0)
         {
             //TODO: Code to close doors
-            Debug.Log("CLOSING DOORS");
             transform.parent.GetComponent<ActionsLeft>().cameraMap.GetComponent<RoomsToCameraMap>().actionsLeft--;
             clicked = true;
         }

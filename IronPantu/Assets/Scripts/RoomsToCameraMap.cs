@@ -19,6 +19,7 @@ public class RoomsToCameraMap : MonoBehaviour
     public int prepareTime;
     float timer;
     GameObject timerText;
+    float scaleFactorButtons = 1.5f;
     void Start()
     {
         gridDimentions = GameObject.Find("RoomController").GetComponent<RoomGenerator>().gridDimensions;
@@ -52,8 +53,8 @@ public class RoomsToCameraMap : MonoBehaviour
         foreach (Room room in rooms)
         {
             Button instanceButton = Instantiate(cameraRoom, cameraCanvasInstance.transform.GetChild(0).transform.GetChild(0).transform);
-            instanceButton.transform.position = new Vector3(room.gridPos.x * cellWidth, room.gridPos.y * cellHeight);
-            instanceButton.GetComponent<RectTransform>().sizeDelta = new Vector2(cellWidth, cellHeight);
+            instanceButton.transform.position = new Vector3(room.gridPos.x * cellWidth, room.gridPos.y * cellHeight)* scaleFactorButtons;
+            instanceButton.GetComponent<RectTransform>().sizeDelta = new Vector2(cellWidth, cellHeight)* scaleFactorButtons;
             instanceButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Room " + roomCount;
 
             roomCount++;

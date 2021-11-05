@@ -24,7 +24,6 @@ public class TurnOffLights : MonoBehaviour
         if (!clicked && actions > 0)
         {
             //TODO: Activate turret code
-            Debug.Log("Lights Turned Off");
             transform.parent.GetComponent<ActionsLeft>().cameraMap.GetComponent<RoomsToCameraMap>().actionsLeft--;
             clicked = true;
         }
