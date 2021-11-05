@@ -18,8 +18,8 @@ public class GoBack : MonoBehaviour
     }
     public void GoBackOnClick()
     {
-        cameraMap.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         cameraMap.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        cameraMap.gameObject.transform.GetChild(2).gameObject.SetActive(true);
         Destroy(transform.parent.gameObject);
     }
 }

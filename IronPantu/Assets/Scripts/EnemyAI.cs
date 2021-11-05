@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour
     public float detectionradius;
     float _radius;
 
+    float angle;
+
     Path path;
     int currentwp = 0;
     bool reachedeop = false;
@@ -37,11 +39,18 @@ public class EnemyAI : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
 
 
-        InvokeRepeating("Updatepath", 0f, .5f);
+        InvokeRepeating("Updatepath", 0f, .25f);
 
     }
 
 
+
+    void Update()
+    {
+        Vector3 direction = target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb2d.rotation = angle + 90;
+    }
     void Updatepath()
     {
 
@@ -119,5 +128,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, 0), _radius);
     }
+
+
 
 }
