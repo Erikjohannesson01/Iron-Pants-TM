@@ -11,12 +11,15 @@ public class PlayerMovement : MonoBehaviour
     int ammo;
     bool canShoot = true;
     HealthAndDeath had;
+
+    AudioSource gunshot;
     public GameObject bullet;
     public SpriteRenderer spriterenderer;
     public Animator animator;
 
     void Start()
     {
+        gunshot = GetComponent<AudioSource>();
         had = GetComponent<HealthAndDeath>();
         rigid2D = GetComponent<Rigidbody2D>();
         ammo = 6;
@@ -77,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (had.states == State.Alive && Input.GetMouseButtonDown(0) && canShoot && ammo > 0)
         {
+            gunshot.Play();
             GameObject tempBullet = Instantiate(bullet, transform.position, transform.rotation);
             Rigidbody2D rbBullet = tempBullet.GetComponent<Rigidbody2D>();
             rbBullet.velocity = mousePos.normalized * 10f;
