@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
 
     bool chase = false;
 
+    public Animator animator;
+
     public float detectionradius;
     float _radius;
 
@@ -119,7 +121,20 @@ public class EnemyAI : MonoBehaviour
             currentwp++;
         }
 
-        
+        if (force.x < 0 || force.x > 0)
+        {
+            animator.SetBool("Enemywalking", true);
+        }
+        else if (force.y < 0 || force.y > 0)
+        {
+            animator.SetBool("Enemywalking", true);
+        }
+
+        else
+        {
+            animator.SetBool("Enemyidle", false);
+        }
+
     }
 
 
