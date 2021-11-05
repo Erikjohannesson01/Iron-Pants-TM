@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GameObject tempBullet = Instantiate(bullet, transform.position, transform.rotation);
             Rigidbody2D rbBullet = tempBullet.GetComponent<Rigidbody2D>();
-            rbBullet.velocity = mousePos.normalized * 10f;
+            rbBullet.velocity = mousePos.normalized * 3f;
             ammo--;
             canShoot = false;
             StartCoroutine(ShootBuffer(2));

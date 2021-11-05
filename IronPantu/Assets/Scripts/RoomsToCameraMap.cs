@@ -15,6 +15,7 @@ public class RoomsToCameraMap : MonoBehaviour
     float cellHeight;
     float cellWidth;
     int gridDimentions;
+
     public int actionsLeft = 8;
     public int prepareTime;
     float timer;
@@ -22,7 +23,7 @@ public class RoomsToCameraMap : MonoBehaviour
     float scaleFactorButtons = 1.5f;
     void Start()
     {
-        gridDimentions = GameObject.Find("RoomController").GetComponent<RoomGenerator>().gridDimensions;
+        securityPanel = GameObject.Find("SecurityPanel");
         timerText = gameObject.transform.GetChild(0).GetChild(0).gameObject;
         UpdateTimer();
     }
@@ -41,6 +42,7 @@ public class RoomsToCameraMap : MonoBehaviour
     }
     void GetCameraMap()
     {
+        gridDimentions = GameObject.Find("RoomGenerator").GetComponent<RoomGenerator>().gridDimensions;
         Instantiate(background, transform);
         Canvas cameraCanvasInstance = Instantiate(cameraCanvas, transform);
         cellWidth = cameraCanvasInstance.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.x / gridDimentions;
@@ -48,7 +50,7 @@ public class RoomsToCameraMap : MonoBehaviour
 
 
         int roomCount = 1;
-        List<Room> rooms = GameObject.Find("RoomController").GetComponent<RoomGenerator>().rooms;
+        List<Room> rooms = GameObject.Find("RoomGenerator").GetComponent<RoomGenerator>().rooms;
 
         foreach (Room room in rooms)
         {
@@ -68,7 +70,7 @@ public class RoomsToCameraMap : MonoBehaviour
             if (!cameraMapGenerated)
             {
                 GetCameraMap();
-                actionsLeft = GameObject.Find("RoomController").transform.childCount;
+                actionsLeft = GameObject.Find("RoomGenerator").transform.childCount;
                 cameraMapGenerated = true;
             }
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
@@ -81,7 +83,7 @@ public class RoomsToCameraMap : MonoBehaviour
         {
             GameObject cameraScreen = GameObject.Find("InCameraScreen(Clone)");
             Destroy(cameraScreen);
-            GameObject player = GameObject.Find("Player");
+            GameObject player = GameObject.Find("Player Variant");
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
             inCameraMap = false;
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
@@ -92,7 +94,7 @@ public class RoomsToCameraMap : MonoBehaviour
         {
             GameObject cameraScreen = GameObject.Find("InCameraScreen(Clone)");
             Destroy(cameraScreen);
-            GameObject player = GameObject.Find("Player");
+            GameObject player = GameObject.Find("Player Variant");
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
             inCameraMap = false;
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
