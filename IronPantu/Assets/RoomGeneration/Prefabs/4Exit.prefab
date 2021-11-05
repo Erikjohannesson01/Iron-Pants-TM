@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8342703378328823025}
   - component: {fileID: 5810627109385814997}
   - component: {fileID: 6125809437769509412}
+  - component: {fileID: 5379423624516713192}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +132,104 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5379423624516713192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342171226292710496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: 0.47669587, y: -0.4965816, z: 0}
+  - {x: -0.49472126, y: -0.49658155, z: 0}
+  - {x: -0.51274645, y: 0.5025904, z: 0}
+  - {x: 0.53077364, y: 0.50459313, z: 0}
+  m_ShapePathHash: -1037178787
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64642
+--- !u!1 &418048020207249120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2358242103957284406}
+  - component: {fileID: 1782451594752101017}
+  m_Layer: 0
+  m_Name: Point Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2358242103957284406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418048020207249120}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3822195988796150029}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782451594752101017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418048020207249120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.65
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.5
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 0.6
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &2583774683770903492
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,9 +242,10 @@ GameObject:
   - component: {fileID: 7308302423212079303}
   - component: {fileID: 5438143519600657634}
   - component: {fileID: 7115484142835964200}
+  - component: {fileID: 6934623500168726287}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,6 +362,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6934623500168726287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2583774683770903492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: -0.494593, y: -0.5012027, z: 0}
+  - {x: 0.49459168, y: -0.50120276, z: 0}
+  - {x: 0.47656745, y: 0.50120264, z: 0}
+  - {x: -0.49459353, y: 0.4989494, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64676
 --- !u!1 &3205250803665457413
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,9 +400,10 @@ GameObject:
   - component: {fileID: 2126248222445015602}
   - component: {fileID: 5929748845874689798}
   - component: {fileID: 5710622279054457407}
+  - component: {fileID: 1666409528756346912}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,6 +520,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1666409528756346912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205250803665457413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: -0.49459285, y: -0.50345576, z: 0}
+  - {x: 0.5306452, y: -0.50120264, z: 0}
+  - {x: 0.5126202, y: 0.49894935, z: 0}
+  - {x: -0.5126178, y: 0.49894944, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64588
 --- !u!1 &4511303173705735149
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +583,7 @@ Transform:
   - {fileID: 7373359172882310382}
   - {fileID: 4464893772141947570}
   - {fileID: 8955827906902309574}
+  - {fileID: 2358242103957284406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -458,9 +612,10 @@ GameObject:
   - component: {fileID: 8861167499453007277}
   - component: {fileID: 6043102382758101849}
   - component: {fileID: 2853243248373362256}
+  - component: {fileID: 8272777353696127349}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,6 +732,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8272777353696127349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766094396833066865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: -0.47866952, y: -0.50058734, z: 0}
+  - {x: 0.4966964, y: -0.50058734, z: 0}
+  - {x: 0.4966964, y: 0.49858445, z: 0}
+  - {x: -0.44261765, y: 0.49858445, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64688
 --- !u!1 &4814457532965914884
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,9 +770,10 @@ GameObject:
   - component: {fileID: 6816548045666445226}
   - component: {fileID: 3458477775692973400}
   - component: {fileID: 4637906025850510363}
+  - component: {fileID: 6739866471957302297}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,6 +890,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6739866471957302297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814457532965914884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: 0.47669682, y: -0.4965816, z: 0}
+  - {x: -0.47669438, y: -0.49457872, z: 0}
+  - {x: -0.47669512, y: 0.50459313, z: 0}
+  - {x: 0.51274794, y: 0.50459325, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64670
 --- !u!1 &5841314096799542986
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,9 +962,10 @@ GameObject:
   - component: {fileID: 924863190902472435}
   - component: {fileID: 1969433060277294530}
   - component: {fileID: 5808516741383468792}
+  - component: {fileID: 1222809387616883606}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,6 +1082,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1222809387616883606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526711390138035233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: -0.5126196, y: -0.50345594, z: 0}
+  - {x: 0.5126184, y: -0.5012027, z: 0}
+  - {x: 0.5126179, y: 0.50345594, z: 0}
+  - {x: -0.5306446, y: 0.5012027, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64586
 --- !u!1 &8010955751852510106
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,9 +1120,10 @@ GameObject:
   - component: {fileID: 2968680634807764904}
   - component: {fileID: 1133230786767745480}
   - component: {fileID: 7680295172268342680}
+  - component: {fileID: 8765837732414916664}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1004,6 +1240,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8765837732414916664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010955751852510106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: 0.49472255, y: -0.49658158, z: 0}
+  - {x: -0.51274645, y: -0.49658173, z: 0}
+  - {x: -0.494722, y: 0.49858448, z: 0}
+  - {x: 0.5127485, y: 0.5005873, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64698
 --- !u!1 &8429087298902148325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,9 +1278,10 @@ GameObject:
   - component: {fileID: 8435753713408067045}
   - component: {fileID: 4814188544252319336}
   - component: {fileID: 3359562900428337877}
+  - component: {fileID: 8942186089076067663}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1135,6 +1398,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8942186089076067663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8429087298902148325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 731a810600000000
+  m_ShapePath:
+  - {x: -0.5306448, y: -0.5012027, z: 0}
+  - {x: 0.49459326, y: -0.5034559, z: 0}
+  - {x: 0.49459347, y: 0.4966962, z: 0}
+  - {x: -0.49459195, y: 0.49894944, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 64704
 --- !u!1001 &5819005508404268967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1519,14 +1808,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e97cdb6406084164eabe660579376871, type: 3}
---- !u!1 &417224284397971342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8296997202320348275, guid: e97cdb6406084164eabe660579376871, type: 3}
-  m_PrefabInstance: {fileID: 8569960561738249213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &297420451562070421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8272615443911987816, guid: e97cdb6406084164eabe660579376871, type: 3}
+  m_PrefabInstance: {fileID: 8569960561738249213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &417224284397971342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8296997202320348275, guid: e97cdb6406084164eabe660579376871, type: 3}
   m_PrefabInstance: {fileID: 8569960561738249213}
   m_PrefabAsset: {fileID: 0}
 --- !u!61 &2334519428483985645
