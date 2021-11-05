@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 mousePos;
     Vector2 objectPos;
     float angle;
+    int ammo;
+    bool canShoot = true;
     HealthAndDeath had;
     public GameObject bullet;
     public SpriteRenderer spriterenderer;
@@ -16,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         had = GetComponent<HealthAndDeath>();
-        rigid2D = GetComponent<Rigidbody2D>(); 
+        rigid2D = GetComponent<Rigidbody2D>();
+        ammo = 6;
     }
 
     void Update()
@@ -72,11 +75,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Shoot()
     {
-        if(had.states == State.Alive && Input.GetMouseButtonDown(0))
+        if (had.states == State.Alive && Input.GetMouseButtonDown(0) && canShoot && ammo > 0)
         {
             GameObject tempBullet = Instantiate(bullet, transform.position, transform.rotation);
             Rigidbody2D rbBullet = tempBullet.GetComponent<Rigidbody2D>();
             rbBullet.velocity = mousePos.normalized * 10f;
+            ammo--;
+            canShoot = false;
+            StartCoroutine(ShootBuffer(2));
         }
+    }
+
+    IEnumerator ShootBuffer(int sec)
+    {
+        yield return new WaitForSeconds(sec);
+        canShoot = true;
     }
 }

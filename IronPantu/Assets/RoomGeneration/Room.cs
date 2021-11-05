@@ -7,8 +7,6 @@ public class Room : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
-    private Bounds bounds;
-
     public Vector2 gridPos;
     public RoomDirection direction;
     public RoomType type;
@@ -23,7 +21,6 @@ public class Room : MonoBehaviour
 
     void Start()
     {
-        bounds = GetComponent<BoxCollider2D>().bounds;
 
         if(type == RoomType.End) { spriteRenderer.color = Color.red; }
         else if(type == RoomType.Start) { spriteRenderer.color = Color.green; }
