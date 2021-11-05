@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class HealthAndDeath : MonoBehaviour
 {
     int hp = 5;
+    bool canTakeDamage = true;
     public State states;
     private PlayerMovement move;
 
@@ -24,9 +25,11 @@ public class HealthAndDeath : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && canTakeDamage)
         {
             hp--;
+            canTakeDamage = false;
+            StartCoroutine(DamageBuffer(2));
         }
     }
 
@@ -54,5 +57,11 @@ public class HealthAndDeath : MonoBehaviour
     {
         if(states == State.PrepareFase)
         move.enabled = false;
+    }
+
+    IEnumerator DamageBuffer(int secs)
+    {
+        yield return new WaitForSeconds(secs);
+        canTakeDamage = true;
     }
 }
