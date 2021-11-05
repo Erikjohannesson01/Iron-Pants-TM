@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     bool chase = false;
 
     public float detectionradius;
+    float _radius;
 
     float angle;
 
@@ -30,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _radius = detectionradius;
+        target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 
         seeker = GetComponent<Seeker>();
 
@@ -50,20 +53,21 @@ public class EnemyAI : MonoBehaviour
     }
     void Updatepath()
     {
-        if (Mathf.Pow(target.position.x - transform.position.x, 2) + Mathf.Pow(target.position.y - transform.position.y, 2) < Mathf.Pow(detectionradius, 2))
+
+        if (Mathf.Pow(target.position.x - transform.position.x, 2) + Mathf.Pow(target.position.y - transform.position.y, 2) < Mathf.Pow(_radius, 2))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, target.position - transform.position, 1f, obstaclelayer);
 
             if(hit.collider == null)
             {
                 chase = true;
-                detectionradius = 10;
+                _radius = detectionradius * 2;
             }
         }
         else
         {
             chase = false;
-            detectionradius = 5;
+            _radius = detectionradius;
         }
         if (seeker.IsDone() && chase)
             seeker.StartPath(rb2d.position, target.position, Onpath);
@@ -105,7 +109,8 @@ public class EnemyAI : MonoBehaviour
         Vector2 dir = ((Vector2)path.vectorPath[currentwp] - rb2d.position).normalized;
         Vector2 force = dir * speed * Time.deltaTime;
 
-        rb2d.AddForce(force);
+        rb2d.velocity = force;
+        //rb2d.AddForce(force);
 
         float distance = Vector2.Distance(rb2d.position, path.vectorPath[currentwp]);
 
@@ -121,7 +126,7 @@ public class EnemyAI : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, 0), detectionradius);
+        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, 0), _radius);
     }
 
 

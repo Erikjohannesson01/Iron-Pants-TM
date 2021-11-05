@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Look();
         Shoot();
+
     }
 
     void Move()
@@ -34,9 +35,9 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKey(KeyCode.LeftShift))
-            speed = 3;
+            speed = 0.5f;
         else
-            speed = 5;
+            speed = 1;
 
 
         Vector3 movement = new Vector3(x, y).normalized * speed;
