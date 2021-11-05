@@ -6,9 +6,11 @@ public class RoomGenerator : MonoBehaviour
 {
     private Vector3 offset;
     public int gridDimensions;
+    public AstarPath pathfinding;
     [SerializeField, Range(0, 1)]
     private float randomPahting;
     public GameObject Room;
+    bool hasScanned = false;
 
     public List<Room> rooms = new List<Room>();
 
@@ -19,10 +21,13 @@ public class RoomGenerator : MonoBehaviour
         RandomWalk();
     }
 
-
     void Update()
     {
-
+        if (!hasScanned)
+        {
+            pathfinding.Scan();
+            hasScanned = true;
+        }
     }
 
 
@@ -78,7 +83,7 @@ public class RoomGenerator : MonoBehaviour
 
                 if (!_check)
                 {
-                    oldRoom = newRoom(new Vector3(_tempPos.x, _tempPos.y), RoomType.Normal, RoomDirection.North, RoomExit.Empty);
+                    oldRoom = newRoom(new Vector3(_tempPos.x, _tempPos.y), RoomType.Empty, RoomDirection.North, RoomExit.Empty);
                 }
 
                 _currentPos = _tempPos;
@@ -89,7 +94,6 @@ public class RoomGenerator : MonoBehaviour
         {
             room.DecideRoom(rooms);
         }
-
     }
 
     private Vector2 BestMove(Vector2 pos, Vector2 dest)

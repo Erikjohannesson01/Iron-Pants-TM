@@ -21,7 +21,10 @@ namespace RoomEnums {
     {
         Start,
         End,
-        Normal
+        Empty,
+        Enemy,
+        Health,
+        Ammo
     }
 
 }

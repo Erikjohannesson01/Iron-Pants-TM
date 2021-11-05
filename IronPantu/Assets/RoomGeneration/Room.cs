@@ -7,49 +7,23 @@ public class Room : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    private Bounds bounds;
+
     public Vector2 gridPos;
     public RoomDirection direction;
     public RoomType type;
     public RoomExit exit;
 
-    public Sprite Exit1, Exit2_1, Exit2_2, Exit3, Exit4;
+    public bool openDoors = true;
 
+
+    public RoomFunctions roomFunc;
+
+    public GameObject G_Exit1, G_Exit2_1, G_Exit2_2, G_Exit3, G_Exit4, Enemy;
 
     void Start()
     {
-
-        switch (exit)
-        {
-            case RoomExit.Exit4:
-                spriteRenderer.sprite = Exit4;
-                break;
-            case RoomExit.Exit3:
-                spriteRenderer.sprite = Exit3;
-                break;
-            case RoomExit.Exit2_1:
-                spriteRenderer.sprite = Exit2_1;
-                break;
-            case RoomExit.Exit2_2:
-                spriteRenderer.sprite = Exit2_2;
-                break;
-            case RoomExit.Exit1:
-                spriteRenderer.sprite = Exit1;
-                break;
-            default:
-                spriteRenderer.sprite = Exit4;
-                break;
-        }
-
-
-        if (direction == RoomDirection.North)
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        else if (direction == RoomDirection.South)
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
-        else if (direction == RoomDirection.East)
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
-        else if (direction == RoomDirection.West)
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-
+        bounds = GetComponent<BoxCollider2D>().bounds;
 
         if(type == RoomType.End) { spriteRenderer.color = Color.red; }
         else if(type == RoomType.Start) { spriteRenderer.color = Color.green; }
@@ -58,6 +32,8 @@ public class Room : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+       
 
     }
 
@@ -95,7 +71,7 @@ public class Room : MonoBehaviour
         }
 
 
-        if(exit == RoomExit.Exit4) { Start(); return; }
+        if(exit == RoomExit.Exit4) { EnableRoom(); return; }
 
         else if(exit == RoomExit.Exit1 || exit == RoomExit.Exit3)
         {
@@ -119,11 +95,84 @@ public class Room : MonoBehaviour
             else if (yCheck) { direction = RoomDirection.North; }
         }
 
+        EnableRoom();
+    }
+
+    public void EnableRoom()
+    {
+        GameObject _temp;
+        switch (exit)
+        {
+            case RoomExit.Exit3:
+                _temp = Instantiate(G_Exit3, transform);
+                break;
+            case RoomExit.Exit2_1:
+                _temp = Instantiate(G_Exit2_1, transform);
+                break;
+            case RoomExit.Exit2_2:
+                _temp = Instantiate(G_Exit2_2, transform);
+                break;
+            case RoomExit.Exit1:
+                _temp = Instantiate(G_Exit1, transform);
+                break;
+            default:
+                _temp = Instantiate(G_Exit4, transform);
+                break;
+        }
+
+        if (direction == RoomDirection.North)
+            _temp.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        else if (direction == RoomDirection.South)
+            _temp.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+        else if (direction == RoomDirection.East)
+            _temp.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
+        else if (direction == RoomDirection.West)
+            _temp.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
 
 
-        Start();
+        if(type != RoomType.Start && type != RoomType.End)
+        type = (RoomType)Mathf.RoundToInt(Random.Range(2, 4));
+
+        if(type == RoomType.Enemy)
+        {
+            float spawnRadius = 0.25f;
+            int amountOfEnemies = Mathf.RoundToInt(Random.Range(1, 3));
+            Vector2[] positions = new Vector2[amountOfEnemies];
+
+            for (int i = 0; i < amountOfEnemies; i++)
+            {
+                Vector3 pos = randomEnemyPos();
+                if (i > 0)
+                {
+                    if(Mathf.Pow(pos.x - positions[i-1].x, 2) + Mathf.Pow(pos.y - positions[i-1].y, 2) > (spawnRadius * spawnRadius))
+                    {
+                        Instantiate(Enemy, pos, Quaternion.identity);
+
+                        positions[i] = pos;
+                    }
+                    else
+                    {
+                        i -= 1;
+                        continue;
+                    }
+                } else
+                {
+                    Instantiate(Enemy, pos, Quaternion.identity);
+
+                    positions[i] = pos;
+                }
+            }
+        }
 
     }
 
+
+    private Vector3 randomEnemyPos()
+    {
+        return new Vector3(
+           Random.Range(transform.position.x - 0.3f, transform.position.x + 0.3f),
+           Random.Range(transform.position.y - 0.3f, transform.position.y + 0.3f)
+       );
+    }
 
 }
